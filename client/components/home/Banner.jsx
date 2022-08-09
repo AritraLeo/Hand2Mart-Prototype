@@ -134,6 +134,7 @@ export const Banner = () => {
                         animationType='fadeout'
                         autoPlayInterval={400}
                         autoPlayStrategy='none'
+                        infinite
                         mouseTracking items={items} />
                     <InfoContainer>
                         <Title>
