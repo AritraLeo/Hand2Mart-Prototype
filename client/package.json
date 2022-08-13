@@ -16,12 +16,15 @@
   "dependencies": {
     "@brainhubeu/react-carousel": "^2.0.4",
     "@emotion/css": "^11.9.0",
-    "@emotion/react": "^11.9.3",
+    "@emotion/is-prop-valid": "^1.2.0",
+    "@emotion/react": "^11.10.0",
     "@emotion/server": "^11.4.0",
-    "@emotion/styled": "^11.9.3",
+    "@emotion/styled": "^11.10.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@icon/ionicons": "^5.4.0-alpha.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.0",
     "bootstrap": "^5.2.0",
     "ionicons": "^6.0.2",
     "next": "12.2.3",
@@ -48,7 +51,9 @@
   "babel": {
     "env": {
       "development": {
-        "presets": ["next/babel"],
+        "presets": [
+          "next/babel"
+        ],
         "plugins": [
           [
             "styled-components",
@@ -60,7 +65,9 @@
         ]
       },
       "production": {
-        "presets": ["next/babel"],
+        "presets": [
+          "next/babel"
+        ],
         "plugins": [
           [
             "styled-components",

@@ -9,6 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 import { SCREENS } from '../responsive';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { css } from 'styled-components';
 
 
 const TopCarsContainers = styled.div`
@@ -59,13 +60,44 @@ const testCar2 = {
     gas: "Petrol",
 };
 
-const items = [
+const testBike = {
+    name: "BMW S1000RR",
+    mileage: "15k",
+    thumbnailSrc:
+        "https://c4.wallpaperflare.com/wallpaper/109/292/855/bmw-bmw-s1000rr-motorcycle-wallpaper-preview.jpg",
+    dailyPrice: 70,
+    monthlyPrice: 1600,
+    gearType: "Manual",
+    gas: "Petrol",
+};
+
+const testBike2 = {
+    name: "DUCATI V4 Superlegerra",
+    mileage: "9k",
+    thumbnailSrc:
+        "https://w0.peakpx.com/wallpaper/656/291/HD-wallpaper-v4r-superleggera-2020-front-superleggera-superbike-v4-r-ducati.jpg",
+    dailyPrice: 70,
+    monthlyPrice: 1600,
+    gearType: "Manual",
+    gas: "Petrol",
+};
+
+const itemsCars = [
     (<Car {...testCar} />),
     (<Car {...testCar2} />),
     (<Car {...testCar} />),
     (<Car {...testCar2} />),
     (<Car {...testCar} />),
     (<Car {...testCar} />),
+]
+
+const itemBikes = [
+    (<Car {...testBike} />),
+    (<Car {...testBike2} />),
+    (<Car {...testBike} />),
+    (<Car {...testBike2} />),
+    (<Car {...testBike} />),
+    (<Car {...testBike2} />),
 ]
 
 const responsive = {
@@ -85,17 +117,94 @@ const responsive = {
 }
 
 
+const CarButtonSlector = styled.button`
+:hover{
+    background-color: #5eeeee;
+    color: black;
+}
+
+${tw`p-1 rounded-2xl`}
+`;
+// /* ${({ carSelector }) => (carSelector ? css`background-color: 'cyan'` : tw`bg-gray-500`)}; */
+
+
+const SelectorButtonContainer = styled.div`
+    ${tw`mt-3 p-1 text-white`}
+`;
+
+
+const SelectorButton = styled.button`
+    ${tw` bg-gray-700 hover:bg-gray-500 rounded-2xl`}
+`;
+
+
+const BikeButtonSlector = styled.button`
+:hover{
+    background-color: #5eeeee;
+    color: black;
+}
+
+    ${tw`p-1 rounded-2xl`}
+`;
+
+
 export const TrendingCars = () => {
+
+    const [carSelector, setCarSelector] = useState(true);
+    const [bikeSelector, setBikeSelector] = useState(false);
 
     const [current, setCurrent] = useState(0);
     const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
+    const toggleCar = () => {
+        setBikeSelector(open => !open);
+        setCarSelector(open => !open)
+    }
 
+    const toggleBike = () => {
+        setBikeSelector(open => !open);
+        setCarSelector(open => !open)
+    }
 
     // const numberOfDots = isMobile ? cars.length : Math.ceil(cars.length / 3);
 
     return <TopCarsContainers>
         <Title>Explore Our Top Deals</Title>
+
+        {/* Selectors -Styled */}
+        {/* <SelectorButtonContainer>
+            <SelectorButton>
+                <CarButtonSlector carSelector={carSelector} onClick={toggleCar} >
+                    Car
+                </CarButtonSlector>
+                <BikeButtonSlector bikeSelector={bikeSelector} onClick={toggleBike}>
+                    Bike
+                </BikeButtonSlector>
+            </SelectorButton>
+        </SelectorButtonContainer> */}
+
+        {/* Selectors - html */}
+        <div className="mt-3 p-1 text-white">
+            <button className='bg-gray-500 rounded-2xl'>
+                <button className='p-1 rounded-2xl' style={{
+                    backgroundColor: `${carSelector ? 'cyan' : 'gray'}`,
+                    color: `${carSelector ? 'black' : 'white'}`
+                }}
+                    onClick={toggleCar}
+                >
+                    Car
+                </button>
+                <button className='p-1 rounded-2xl' style={{
+                    backgroundColor: `${bikeSelector ? 'cyan' : 'gray'}`,
+                    color: `${bikeSelector ? 'black' : 'white'}`
+                }}
+                    onClick={toggleBike}
+                >
+                    Bike
+                </button>
+            </button>
+        </div>
+
         <CarContainer>
             <AliceCarousel
                 animationDuration={400}
@@ -106,7 +215,7 @@ export const TrendingCars = () => {
                 infinite
                 responsive={responsive}
                 autoPlay
-                items={items}
+                items={carSelector ? itemsCars : itemBikes}
             />
         </CarContainer>
     </TopCarsContainers>

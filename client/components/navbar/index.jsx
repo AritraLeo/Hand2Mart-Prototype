@@ -26,15 +26,15 @@ const LogoContainer = styled.div``;
 export const Navbar = () => {
     return (
         <>
-            <Header />
             <NavbarContainer>
                 <LogoContainer>
                     {/* Logo */}
                     {/* {Logo} */}
-                    <Logo />
+                    <Logo color='dark' />
                 </LogoContainer>
                 <NavItems />
             </NavbarContainer>
+            <Header />
         </>
     )
 }

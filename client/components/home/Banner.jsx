@@ -103,10 +103,10 @@ const items = [
         <img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />
     </CarContainer>),
     (<CarContainer>
-        <img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />
+        <img src={"/Ferrari.png"} onDragStart={handleDragStart} role="presentation" />
     </CarContainer>),
     (<CarContainer>
-        < img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />,
+        < img src={"/Lambo.png"} onDragStart={handleDragStart} role="presentation" />,
     </CarContainer>)
 ];
 
@@ -132,7 +132,7 @@ export const Banner = () => {
                         // autoWidth='false'
                         animationDuration={400}
                         animationType='fadeout'
-                        autoPlayInterval={400}
+                        autoPlayInterval={1200}
                         autoPlayStrategy='none'
                         infinite
                         mouseTracking items={items} />
@@ -153,15 +153,22 @@ export const Banner = () => {
 
                 <AboutUsContainer>
                     <CarContainer>
-                        <Carousel showThumbs={false} width={(windowWidth) / 2.1} autoPlay interval="500" transitionTime="500">
+                        <Carousel
+                            showThumbs={false}
+                            width={(windowWidth) / 2.1}
+                            infiniteLoop='true'
+                            autoPlay
+                            interval="1400"
+                            transitionTime="600"
+                        >
                             <CarContainer>
                                 <img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />
                             </CarContainer>
                             <CarContainer>
-                                <img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />
+                                <img src={"/Ferrari.png"} onDragStart={handleDragStart} role="presentation" />
                             </CarContainer>
                             <CarContainer>
-                                <img src={"/Jeep.png"} onDragStart={handleDragStart} role="presentation" />
+                                <img src={"/Lambo.png"} onDragStart={handleDragStart} role="presentation" />
                             </CarContainer>
                         </Carousel>
                     </CarContainer>
