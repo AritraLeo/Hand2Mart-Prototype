@@ -7,12 +7,14 @@ import { SCREENS } from './../responsive/index';
 import menuStyles from "./menuStyles";
 
 const ListContainer = styled.ul`
+background-color: "#22222";
     ${tw`flex list-none`}
 `;
 
 const NavItem = styled.li`
+background-color: "#22222";
 padding-bottom: 1rem;
-    ${tw`text-sm md:text-base text-black font-medium mr-1 md:m-5 cursor-pointer transition duration-300 ease-in-out hover:text-gray-700`};
+    ${tw`text-sm md:text-base text-white font-medium mr-1 md:m-5 cursor-pointer transition duration-300 ease-in-out hover:text-gray-700`};
 
     ${({ menu }) => menu && css`
         ${tw`
@@ -38,6 +40,15 @@ export const NavItems = () => {
                     <a href="#">Services</a>
                 </NavItem>
                 <NavItem menu>
+                    <a href="#">Services</a>
+                </NavItem>
+                <NavItem menu>
+                    <a href="#">Services</a>
+                </NavItem>
+                <NavItem menu>
+                    <a href="#">Services</a>
+                </NavItem>
+                <NavItem menu>
                     <a href="#">Contact Us</a>
                 </NavItem>
             </ListContainer>
@@ -50,6 +61,15 @@ export const NavItems = () => {
         </NavItem>
         <NavItem>
             <a href="#">Cars</a>
+        </NavItem>
+        <NavItem>
+            <a href="#">Services</a>
+        </NavItem>
+        <NavItem>
+            <a href="#">Services</a>
+        </NavItem>
+        <NavItem>
+            <a href="#">Services</a>
         </NavItem>
         <NavItem>
             <a href="#">Services</a>

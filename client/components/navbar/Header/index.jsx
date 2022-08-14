@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,10 +16,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import customTheme from '../../Theme/MUI-theme/index';
+// import { ThemeProvider, createTheme } from "@mui/material/styles";
+// import customTheme from '../../Theme/MUI-theme/index';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { ArrowDropDown } from '@mui/icons-material';
+import  DropBoxLocation  from './Elements/dropBoxSearch';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -61,7 +63,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+
+
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+
+
 export default function Header() {
+
+
+    const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -80,6 +109,8 @@ export default function Header() {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
+
+    const [LocationSelector, setLocationSelector] = useState(false);
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
@@ -124,25 +155,20 @@ export default function Header() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
+            
             <MenuItem>
                 <IconButton
                     size="large"
                     aria-label="show 17 new notifications"
                     color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
+                    
+                    <LocationOnIcon />
+                    <Typography>
+                        New Delhi
+                    </Typography>
+                    <ArrowDropDown />
                 </IconButton>
-                <p>Notifications</p>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -153,33 +179,39 @@ export default function Header() {
                     color="inherit"
                 >
                     <AccountCircle />
+                    <Typography>
+                        Login/Signup
+                    </Typography>
                 </IconButton>
-                <p>Profile</p>
             </MenuItem>
         </Menu>
     );
 
     return (
+        <>
+        {LocationSelector && (
+            <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+        )
+        // <DropBoxLocation toggleModal={true} />
+        }
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" style={{ backgroundColor: "#222222", }} >
                 <Toolbar>
-                    {/* <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-                        MUI
-                    </Typography> */}
+                    
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -191,11 +223,7 @@ export default function Header() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton> */}
+                        
                         <IconButton
                             size="large"
                             aria-label="show 17 new notifications"
@@ -205,10 +233,8 @@ export default function Header() {
                             <Typography>
                                 New Delhi
                             </Typography>
-                            <ArrowDropDown />
-                            {/* <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge> */}
+                            <ArrowDropDown onClick={() => setLocationSelector(true)} />
+                            
                         </IconButton>
                         <IconButton
                             size="large"
@@ -220,6 +246,9 @@ export default function Header() {
                             color="inherit"
                         >
                             <AccountCircle />
+                            <Typography>
+                                Login/Signup
+                            </Typography>
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -239,5 +268,6 @@ export default function Header() {
             {renderMobileMenu}
             {renderMenu}
         </Box>
+        </>
     );
 }
