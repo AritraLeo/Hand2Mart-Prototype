@@ -14,7 +14,7 @@ const dbConn = mysql.createConnection({
     //     // throw error;
     // }
     dbConn.on('error', function(err) {
-  console.log("[mysql error]",err);
+  console.log("[mysql error]",err.stack);
 });
 
     // else

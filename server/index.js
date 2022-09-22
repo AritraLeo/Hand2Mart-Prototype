@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 // const mysql = require('mysql');
@@ -14,12 +15,19 @@ const usedBikes = require('./Routes/usedBikes.route');
 const newCars = require('./Routes/newCars.route');
 const newBikes = require('./Routes/newBikes.route');
 const footer = require('./Routes/footer.route');
+const auth = require('./Routes/auth.router');
+// Seller/Dealer :
+const dealer = require('./Routes/dealer.route');
+// Buyer :
+const buyer = require('./Routes/buyer.route');
+
+const test = require('./Tests/test.route');
 
 
 
 const app = express();
 
-const port = 5000
+const port = 5000 || process.env.PORT
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +36,10 @@ app.use(bodyParser.json());
 
 
 // Routing :-
+
+// Auth:
+
+app.use('/api/auth', auth)
 
 
 // Reviews:
@@ -61,7 +73,19 @@ app.use('/api/newBikes', newBikes);
 
 app.use('/api/footer', footer);
 
+/* Functions  */
 
+// Seller :
+
+    // Dealer:
+
+        app.use('/api/dealer/', dealer);
+
+    // Buyer :
+        app.use('/api/buyer/', buyer);
+
+// Test :
+app.use('/api/tests', test);
 
 
 
