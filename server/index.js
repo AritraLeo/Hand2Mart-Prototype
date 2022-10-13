@@ -16,6 +16,8 @@ const newCars = require('./Routes/newCars.route');
 const newBikes = require('./Routes/newBikes.route');
 const footer = require('./Routes/footer.route');
 const auth = require('./Routes/auth.router');
+// User :
+const user = require('./Routes/user.route');
 // Seller/Dealer :
 const dealer = require('./Routes/dealer.route');
 // Buyer :
@@ -79,10 +81,14 @@ app.use('/api/footer', footer);
 
     // Dealer:
 
-        app.use('/api/dealer/', dealer);
+        app.use('/api/dealer', dealer);
 
     // Buyer :
-        app.use('/api/buyer/', buyer);
+        // app.use('/api/buyer/', buyer);
+    
+    // User :
+        app.use('/api/user', user);
+        // app.use('/api/user');
 
 // Test :
 app.use('/api/tests', test);

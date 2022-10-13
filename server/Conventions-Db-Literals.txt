@@ -1,0 +1,23 @@
+
+Status :-
+
+The status of Tables suggests various things - 
+
+1 - Active not sold ready to be sold out,
+
+0 - In-active sold out or purchased by a customer
+
+-1 - Cannot be sold due to some discripancy in paper work etc. any possible reason.
+
+Rating :-
+
+Rating is an integer that is used for representing the worth or trendiness of the product 
+in the database, its directly proportional to the value assigned with the product.
+
+User Type - 
+
+1 - Normal User or Individual
+
+2 - Dealer
+
+3 - Company Dealer

@@ -37,6 +37,32 @@ UsedCars.getAllCars = (result) => {
     })
 }
 
+
+UsedCars.getAllCarsBySeller = (email, result) => {
+    dbConn.query("SELECT * FROM used_cars WHERE status = ? AND email = ? ORDER BY rating DESC", [1, email], (err, res) => {
+        if (err) {
+            console.log('Error fetching Used Cars', err);
+            result(null, err);
+        } else {
+            console.log('Success in fetching Used Cars');
+            result(null, res);
+        }
+    })
+}
+
+
+UsedCars.getCarByIdAndBySeller = ([id, email], result) => {
+    dbConn.query("SELECT * FROM used_cars WHERE status = ? AND email = ? AND id = ?", [1, email, id], (err, res) => {
+        if (err) {
+            console.log('Error fetching Used Cars', err);
+            result(null, err);
+        } else {
+            console.log('Success in fetching Used Cars');
+            result(null, res);
+        }
+    })
+}
+
 UsedCars.getCarById = (id, result) => {
     dbConn.query("SELECT * FROM used_cars WHERE id = ? AND status = 1", id, (err, res) => {
         if (err) {
@@ -47,5 +73,22 @@ UsedCars.getCarById = (id, result) => {
         }
     })
 }
+
+UsedCars.sellCar = (body, result) => {
+
+    const { name, transmission, ownerType, fuel, price, image, registration, manufactured_at, kms, mileage, description, modelNumber, carNumber, insurance_status, insurance_upto, email} = body;
+
+    dbConn.query("INSERT INTO used_cars (name, transmission, ownerType, fuel, price, image, registration, manufactured_at, kms, mileage, description, modelNumber, carNumber, insurance_status, insurance_upto, email, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [name, transmission, ownerType, fuel, price, image, registration, manufactured_at, kms, mileage, description, modelNumber, carNumber, insurance_status, insurance_upto, email, 1], (err, res) => {
+        if (err) {
+            console.log('Error fetching All Users', err);
+            result(null, err);
+        } else {
+            console.log('Success in fetching All Users');
+            result(null, res);
+        }
+    })
+}
+
+
 
 module.exports = UsedCars;
